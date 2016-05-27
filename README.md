@@ -5,4 +5,11 @@
 
 This is a simple project developed whith SpringBoot, MySQL and WebSockets
 
+# How to get this project
+
+You can execute following command or as you prefer [download zip here](https://github.com/leandrocgsi/simple-rest-spring-data/archive/master.zip) and import in your favourite IDE.
+
+
+```sh
 git clone https://github.com/leandrocgsi/simple-websocket-example.git
+```
