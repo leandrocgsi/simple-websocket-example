@@ -8,14 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.hateoas.ResourceSupport;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="person")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Person extends ResourceSupport implements Serializable{
+public class Person implements Serializable{
     
     private static final long serialVersionUID = 1L;
     

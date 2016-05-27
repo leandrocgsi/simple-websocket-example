@@ -22,7 +22,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import br.com.erudio.models.Person;
 import br.com.erudio.services.PersonService;
 
-@Api(value = "person")
 @RestController
 @RequestMapping("/person/")
 public class PersonController {
@@ -30,7 +29,6 @@ public class PersonController {
 	@Autowired
 	private PersonService personService;
 	
-	@ApiOperation(value = "Find person by ID" )
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/{personId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Person get(@PathVariable(value = "personId") String personId){
@@ -39,7 +37,6 @@ public class PersonController {
 		return person;
     }
 	
-	@ApiOperation(value = "Find all persons" )
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping(value = "/findAll", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Person> findAll(){
@@ -53,7 +50,6 @@ public class PersonController {
 		return personsReturn;
 	}
 	
-	@ApiOperation(value = "Find all persons" )
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping(value = "/findByName/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Person> findByName(@PathVariable(value = "name") String name){
@@ -65,7 +61,6 @@ public class PersonController {
 		return persons;
 	}
 	
-	@ApiOperation(value = "Find all persons" )
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping(value = "/findByNameLike/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Person> findByNameLike(@PathVariable(value = "name") String name){
@@ -77,7 +72,6 @@ public class PersonController {
 		return persons;
 	}
 	
-	@ApiOperation(value = "Create a new person" )
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Person create(@RequestBody Person person){
@@ -87,7 +81,6 @@ public class PersonController {
 		return createdPerson;
 	}
 	
-	@ApiOperation(value = "Update an existing person")
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping(method = RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Person update(@RequestBody Person person){
@@ -97,15 +90,10 @@ public class PersonController {
 		return updatedPerson;
 	}
 
-	@ApiOperation(value = "Delete person by ID" )
 	@ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "/{personId}", method = RequestMethod.DELETE)
     public void delete(@PathVariable(value = "personId") String personId){
 		Person person = personService.findById(personId);
         personService.delete(person);
     }
-
-	private void addHATEOASSupport(Person person, String idPerson) {
-		person.add(linkTo(methodOn(PersonController.class).get(idPerson)).withSelfRel());
-	}
 }
